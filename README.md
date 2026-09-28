@@ -30,7 +30,7 @@ Once the graph-of-thought has been determined, Acrithis will invoke another laye
 
 The modes'll define these in LaTeX and write their dependencies underneath.
 
-Them Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems in an intermediate representation JSON IR of the following schema:
+Then Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems in an intermediate representation JSON IR of the following schema:
 
 ```TypeScript
 type AcrithisIRNode =
