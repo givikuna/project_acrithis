@@ -1,0 +1,10 @@
+*.tnix linguist-language=Nix
+
+*.conf linguist-language=INI
+
+*.md linguist-detectable=true
+*.xml linguist-detectable=false
+
+*.toml linguist-detectable=false
+*.json linguist-detectable=false
+*.css linguist-detectable=false

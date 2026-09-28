@@ -1,0 +1,21 @@
+{
+    "tabWidth": 4,
+    "printWidth": 90,
+    "semi": true,
+    "trailingComma": "all",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "embeddedLanguageFormatting": "auto",
+    "singleAttributePerLine": true,
+    "bracketSameLine": false,
+    "quoteProps": "as-needed",
+    "endOfLine": "lf",
+    "overrides": [
+        {
+            "files": ["*.json", "*.jsonc", ".eslintrc", ".prettierrc"],
+            "options": {
+                "trailingComma": "none"
+            }
+        }
+    ]
+}

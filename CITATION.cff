@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it using these metadata
+title: "Project Acrithis"
+abstract: Software project creating a Lean4 proof immutable database forming a Merkle Graph for AI Models' single-source-of-truth for mathematical theorems.
+authors:
+    - family-names: Tsvariani
+    - given-names: Givi
+version: 0.0.0.1
+identifiers:
+    - description: GitHub for the project
+      type: url
+      value: https://github.com/givikuna/project_acrithis
+license: GPLv3.0
+repository-code: https://github.com/givikuna/project_acrithis
