@@ -33,15 +33,9 @@ Once the graph-of-thought has been determined, Acrithis will invoke another laye
 
 The modes'll define these in LaTeX and write their dependencies underneath.
 
-<<<<<<< HEAD
-Them Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems into `Lean4` proofs. If the axiom or theorem already exists in the `store` (explained in the last section), it'll simply point to that address.
+Then, Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems into `Lean4` proofs. If the axiom or theorem already exists in the `store` (explained in the last section), it'll simply point to that address.
 
-Then the resulting outputs will be transpiled into an intermediate representation JSON IR of the following schema:
-||||||| fcead1c
-Them Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems in an intermediate representation JSON IR of the following schema:
-=======
-Then Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems in an intermediate representation JSON IR of the following schema:
->>>>>>> 82bba68d76f2598dc29928ada110aec208aa5ae1
+Then, the resulting outputs will be transpiled into an intermediate representation JSON IR of the following schema:
 
 ```TypeScript
 type AcrithisIRNode =
