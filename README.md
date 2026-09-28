@@ -19,9 +19,12 @@ It achieves this by grounding every theorem in a trusted content-addressed store
 This section explains how Acrithis will work.
 In the case of confusion with wording, please check `Glossary.md`
 
-### LLM Agents:
-
 Acrithis invokes multiple independent AI agents for writing `Lean4` proof scripts and reviewing them.
+And then places these results in a database. Allowing models to pull from this database for any reason.
+
+This creates a trustable (and human-reviewed) single-source-of-truth, lessening hallucinations.
+
+### LLM Agents:
 
 Acrithis first invokes AI agents for planning how to prove a theorem in a _graph-of-thought_ like structure, this is done with the goal of going to the lowest possible layer of proofs (axioms).
 The results from these AI agents are to be checked by independent AI agents and validated.
@@ -30,7 +33,9 @@ Once the graph-of-thought has been determined, Acrithis will invoke another laye
 
 The modes'll define these in LaTeX and write their dependencies underneath.
 
-Them Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems in an intermediate representation JSON IR of the following schema:
+Them Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems into `Lean4` proofs. If the axiom or theorem already exists in the `store` (explained in the last section), it'll simply point to that address.
+
+Then the resulting outputs will be transpiled into an intermediate representation JSON IR of the following schema:
 
 ```TypeScript
 type AcrithisIRNode =
@@ -76,3 +81,9 @@ These'll be hashed in SHA-256.
 
 This database will constitute different privileges for different users.
 Any MCP based communication, for AI models, will be strictly limited to Append-Only and Read-Only permissions.
+
+## COPYRIGHT NOTE:
+
+The name of this project is `Project Acrithis`, in reference to Acrithis from the video game, Warframe by Digital Extremes.
+The copyright to this name is not mine, and I am not affiliated with Digital Extremes in any form.
+The name simply pays homage to their work and does not attempt, or want to, pertain to Digital Extremes in any form besides paying homage to the character.
