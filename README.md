@@ -1,15 +1,5 @@
 # Project Acrithis
 
-**Acrithis** (named after <a href="https://wiki.warframe.com/w/Acrithis">Acrithis herself</a>) is a formally verified theorem database for eliminating AI hallucinations in mathematical proofs.
-It achieves this by grounding every theorem in a trusted content-addressed store inspired by the <a href="https://nix.dev/manual/nix/2.24/store/">nix store</a>.
-
-### Technologies:
-
-<a href="https://gleam.run/"><img src="https://storage.ghost.io/c/dc/01/dc0121d6-1790-49f9-97f9-83c5d9d1790a/content/images/size/w960/2025/01/lucy.svg" alt="Gleam" width="30" height="30" /></a>
-<a href="https://rust-lang.org/"><img src="https://raw.githubusercontent.com/graydon/rust-www/gh-pages/logos/rust-logo-256x256.png" alt="Rust" width="30" height="30" /></a>
-<a href="https://lean-lang.org/"><img src="https://leodemoura.github.io/static/etaps2026/lean-logo.png" alt="Lean4" width="30" height="30" /></a>
-<a href="https://nixos.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Nix_snowflake.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Nix" width="30" height="30" /></a>
-
 <!--
 <a href=""><img src="" alt="" width="30" height="30" /></a>
 -->
