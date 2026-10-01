@@ -113,16 +113,3 @@ The strict privilege separation'll help avoid rogue AI agents damaging aspects o
 The name of this project is `Project Acrithis`, in reference to Acrithis from the video game, Warframe by Digital Extremes.
 The copyright to this name is not mine, and I am not affiliated with Digital Extremes in any form.
 The name simply pays homage to their work and does not attempt, or want to, pertain to Digital Extremes in any form besides paying homage to the character.
-
-#### Access Control
-
-Acrithis store will have different privileges for different users.
-Any MCP based communication, for AI models, will be strictly limited to Append-Only and Read-Only permissions.
-
-The strict privilege separation'll help avoid rogue AI agents damaging aspects of the database.
-
-## COPYRIGHT NOTE:
-
-The name of this project is `Project Acrithis`, in reference to Acrithis from the video game, Warframe by Digital Extremes.
-The copyright to this name is not mine, and I am not affiliated with Digital Extremes in any form.
-The name simply pays homage to their work and does not attempt, or want to, pertain to Digital Extremes in any form besides paying homage to the character.
