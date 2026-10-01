@@ -65,16 +65,24 @@ The `validation` will likely be done largely by a <a href="https://www.nushell.s
 
 The proofs themselves will be stored in an immutable, content-addressed format where:
 
-- Content determines address (hash)
-- Existing copies cannot be modified by LLMs
-- Dependencies form a direct acyclic Merkle graph
+-   Content determines address (hash)
+-   Existing copies cannot be modified by LLMs
+-   Dependencies form a direct acyclic Merkle graph
+
+#### Human-verified Chunks
+
+The database itself will be shipped by default with many axioms in many areas of mathematics, various foundational theorems, lemmas, and proofs.
+And common proof strategies such as the Pigeonhole Principle.
+
+This ensures the models have a human-verified truth layer for many things that they'll need to be defining.
+Humans can add more things by hand as well, ensuring that the model only has to prove things that haven't yet been proven.
 
 #### Hashing
 
 Hashing input:
 
 ```BASH
-hash_input = theorem_name || statement_text || axiom_dependencies[] || proof_bytes
+hash_input = theorem_name || statement_text || axiom_dependencies[]
 ```
 
 These'll be hashed in SHA-256.
