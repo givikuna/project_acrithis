@@ -13,6 +13,7 @@ It achieves this by grounding every theorem in a trusted content-addressed store
 <a href="https://rust-lang.org/"><img src="https://raw.githubusercontent.com/graydon/rust-www/gh-pages/logos/rust-logo-256x256.png" alt="Rust" width="30" height="30" /></a>
 <a href="https://lean-lang.org/"><img src="https://leodemoura.github.io/static/etaps2026/lean-logo.png" alt="Lean4" width="30" height="30" /></a>
 <a href="https://nixos.org/"><img src="https://upload.wikimedia.org/wikipedia/commons/2/28/Nix_snowflake.svg?utm_source=en.wikipedia.org&utm_campaign=index&utm_content=original" alt="Nix" width="30" height="30" /></a>
+<a href="https://lustre.hexdocs.pm/"><img src="https://avatars.githubusercontent.com/u/145234907?s=200&v=4" alt="Lustre" width="30" height="30" /></a>
 
 <!--
 <a href=""><img src="" alt="" width="30" height="30" /></a>
@@ -39,7 +40,7 @@ The modes'll define these in LaTeX and write their dependencies underneath.
 
 Then, Acrithis will invoke another layer of agents for placing these LaTeX axioms and theorems into `Lean4` proofs. If the axiom or theorem already exists in the `store` (explained in the last section), it'll simply point to that address.
 
-Then, the resulting outputs will be transpiled into an intermediate representation JSON IR of the following schema:
+Then, the resulting outputs will be compiled into an intermediate representation (IR) JSON of the following schema:
 
 ```TypeScript
 type AcrithisIRNode =
@@ -83,25 +84,80 @@ Humans can add more things by hand as well, ensuring that the model only has to 
 
 #### Hashing
 
-Hashing input:
+The hash will be generated using NAR-like serialization, likely relying on BLAKE3 and CID.
+This is to have a self-describing but still unique hash per object.
 
-```BASH
-hash_input = theorem_name || statement_text || dependencies[]
-```
+As recall: AI Generated LaTeX Proof -> AI Generated Lean Proof -> JSON IR -> Nix IR -> Acrithis Store Object (ASO).
 
-These'll be hashed in SHA-256.
+#### Nodes and Artifacts
 
-#### PostgreSQL
+Nodes'll contain multiple fields:
+- id: the string hash
+- name: string
+- type: enum: axiom, definition, lemma, theorem, corollary, conjecture
+- statement_text: string
+- lean_source: string
+- latex_statement: string
+- json_ir: string
+- dependencies: array\<\{hash and role (import, uses_axiom, uses_lemma, etc...)\}\>
+- closure_depth: int distance to the deepest dependency
+- options: lean options (like maxHeartbeats)
+- trust_level: enum: axiom, human_verified, machine_verified, conjecture, unverified
+- validation_status: enum: pending, passed, failed, skipped, errored
+- validation_log: string (lean4checker, axiom checks, acrithis checking script output)
+- has_sorry: bool
+- created_at: timestamptz
+- created_by: string
+- agent_model: Maybe string
+- prompt_hash: the prompt as a hash
+- reviewer_signatures: signatures from humans that verified the proofs (the more signatures that one has, the higher its chance of being used in a proof) (this will not apply to axioms, as they are always seen as correct).
+- nix_ir: string
+- olean: path pointing to binary file for lean
+- store_path: path to the object in the store
+- size_bytes: bigint
+- full_prompt_history: string, describes all prompts, all thought processes, and the multiple AI models (outputs from all of them) on the path to creating this node.
+- tags: string (combinatorics, linear algebra, abstract algebra, category theory, etc...)
+- search_vector: tsvector, full-text search index of the name and statement
+- exrp: lean kernel-level expression
 
-The actual database behind the store will be PostgreSQL.
+#### SQLite
+
+The actual database behind the store will be SQLite.
 The Merkle DAG will be mapped to this database.
 Objects'll point to the store folder (say `./acrithis/store`) that contains the proofs in a nix package like format: `./acrithis/store/a1b2c3d3/something.lean`.
+
+#### Acyclicity
+
+SQLite itself does not guarantee acyclicity, but this is necessary for proofs to work, and for the hashing and IR system to not break.
+As such, Acrithis'll use an algorithm for every object added to the store. If a cycle emerges, it will not be allowed and will be flagged as an error.
+
+#### Nix Parser
+
+Acrithis'll support a simplified subset of the Nix programming language.
+It will parse the Nix code to understand how an object is to be structured in the Acrithis store. And then construct that object.
+This subset of Nix will be referred to as ANix (Acrithis Nix).
+ANix is human-writeable and readable, as it is a proper, nice-to-read IR.
+
+#### Web UI
+
+There will be a Web UI provided by Acrithis to allow for humans to add, remove, and otherwise manage the store.
+This includes but is not limited to:
+- Adding theorems
+- Adding proofs
+- Verifying proofs
+- Managing AI Models
+- Plugging in AI Models
+- Checking logs
+- Changing prompts
+- etc...
+
+The Web UI will be written in [lustre](https://lustre.hexdocs.pm/) to keep the code-base in majority gleam.
 
 #### Concurrency
 
 Due to the BEAM VM, gleam will use an actor model here to be able to take in input from so many models at once cleanly.
 
-#### Access Control
+#### Access/Permission Control
 
 Acrithis store will have different privileges for different users.
 Any MCP based communication, for AI models, will be strictly limited to Append-Only and Read-Only permissions.
