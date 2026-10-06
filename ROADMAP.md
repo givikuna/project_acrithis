@@ -25,6 +25,7 @@ This is a document that changes a lot.
     -   [ ] Needs Merkle Tree-like structures for theorem dependencies
     -   [ ] Query interface by hash or dependency
     -   [ ] In `gleam`
+    -   [ ] Needs a proper and integrated retrieval system
 -   [ ] **Orchestration Layer** (`src/orch/`)
     -   [ ] Cluster manager
     -   [ ] Needs agent lifecycle management (`spawn`/`kill`/`timeout`)
