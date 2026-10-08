@@ -70,9 +70,9 @@ The `validation` will likely be done largely by a <a href="https://www.nushell.s
 
 The proofs themselves will be stored in an immutable, content-addressed format where:
 
--   Content determines address (hash)
--   Existing copies cannot be modified by LLMs
--   Dependencies form a direct acyclic Merkle graph
+- Content determines address (hash)
+- Existing copies cannot be modified by LLMs
+- Dependencies form a direct acyclic Merkle graph
 
 #### Human-verified Chunks
 
@@ -92,6 +92,7 @@ As recall: AI Generated LaTeX Proof -> AI Generated Lean Proof -> JSON IR -> Nix
 #### Nodes and Artifacts
 
 Nodes'll contain multiple fields:
+
 - id: the string hash
 - name: string
 - type: enum: axiom, definition, lemma, theorem, corollary, conjecture
@@ -142,6 +143,7 @@ ANix is human-writeable and readable, as it is a proper, nice-to-read IR.
 
 There will be a Web UI provided by Acrithis to allow for humans to add, remove, and otherwise manage the store.
 This includes but is not limited to:
+
 - Adding theorems
 - Adding proofs
 - Verifying proofs

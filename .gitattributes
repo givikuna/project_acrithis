@@ -2,7 +2,7 @@
 
 *.conf linguist-language=INI
 
-*.md linguist-detectable=true
+*.md linguist-detectable=false
 *.xml linguist-detectable=false
 
 *.toml linguist-detectable=false
