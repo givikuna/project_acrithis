@@ -64,8 +64,6 @@ Then, the `validation` program will go through the list of derivations, and dete
 
 If anything fails here, it'll be logged, and the process will be repeated in a manner that lets the agents re-use many of the previously correct proofs. Thus saving on token usage.
 
-The `validation` will likely be done largely by a <a href="https://www.nushell.sh/">nushell</a> script.
-
 ### Store
 
 The proofs themselves will be stored in an immutable, content-addressed format where:
